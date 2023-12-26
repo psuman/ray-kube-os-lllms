@@ -15,19 +15,6 @@ https://www.anyscale.com/blog/ray-serve-fastapi-the-best-of-both-worlds
 https://www.anyscale.com/blog/simplify-your-mlops-with-ray-and-ray-serve
 https://www.anyscale.com/blog/multi-model-composition-with-ray-serve-deployment-graphs
 
-export AWS_ACCESS_KEY_ID=AKIAV3MGTI54OYZTBMNZ
-export AWS_SECRET_ACCESS_KEY=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
-export AWS_SESSION_TOKEN=IQoJb3JpZ2luX2VjEI3//////////wEaCmFwLXNvdXRoLTEiRzBFAiEA9Vq6gZBOHav7oz2XqNesik7GXXAX48W0zK22AZxJizoCIA7/vcKm4nrIF/M7PalxyKQib6Fi32nwinCbuSb0K3UjKtMBCBYQABoMNDAyMzk4NTk0OTM2IgxZr/GtRnCMVFREDEUqsAHBpPwfxOBO+gnQeNWAaMbEoa+TTebvYIKHuctMnEq+cuVXM8O7T8ZAhxKbVOaucyCiF1dqCF+8/odMNqmAmrq/WVEeEi5CE4KsG/acC7D5Qn7qfAcGnJXKZKfouw2517F4LzxXpNVnNqajjwtlDpoZScEcLDOtcZiWk8VCnyOr1OOehpUwwD+pQsnD39SAGUD3MUVnyz+k6c7qZmSm7GjcRSWD5GaagdqN1ZK/oXhE6jDr9ZCsBjqYAWJI4jKLsigHLoT5NjnyPwnZYyNdyOIaaTpnPgLlvQ3c9RMqjMBdd4/wQeH6pKQVh/kJ/ZiHduMany38G9KQaJB5FQMy9pm/iZ6tr+gnIp2zjPiYK+pND+TMlwMFE/w3+wTvP5FMMjDt7oAkSTlUBb/JE73pv4p5M7fUkBZFrbGkzI7kN4fpwoIbRYKb4Ti1awDlVn9OHdcO
-
-        "AccessKeyId": "ASIAV3MGTI54JQFDTA7G",
-        "SecretAccessKey": "t6zD9rKDuQenz5oIDb3USZVmc/kX4B2ltYE5Ke6Y",
-        "SessionToken": "IQoJb3JpZ2luX2VjEI3//////////wEaCmFwLXNvdXRoLTEiRzBFAiEA9Vq6gZBOHav7oz2XqNesik7GXXAX48W0zK22AZxJizoCIA7/vcKm4nrIF/M7PalxyKQib6Fi32nwinCbuSb0K3UjKtMBCBYQABoMNDAyMzk4NTk0OTM2IgxZr/GtRnCMVFREDEUqsAHBpPwfxOBO+gnQeNWAaMbEoa+TTebvYIKHuctMnEq+cuVXM8O7T8ZAhxKbVOaucyCiF1dqCF+8/odMNqmAmrq/WVEeEi5CE4KsG/acC7D5Qn7qfAcGnJXKZKfouw2517F4LzxXpNVnNqajjwtlDpoZScEcLDOtcZiWk8VCnyOr1OOehpUwwD+pQsnD39SAGUD3MUVnyz+k6c7qZmSm7GjcRSWD5GaagdqN1ZK/oXhE6jDr9ZCsBjqYAWJI4jKLsigHLoT5NjnyPwnZYyNdyOIaaTpnPgLlvQ3c9RMqjMBdd4/wQeH6pKQVh/kJ/ZiHduMany38G9KQaJB5FQMy9pm/iZ6tr+gnIp2zjPiYK+pND+TMlwMFE/w3+wTvP5FMMjDt7oAkSTlUBb/JE73pv4p5M7fUkBZFrbGkzI7kN4fpwoIbRYKb4Ti1awDlVn9OHdcO",
-        "Expiration": "2023-12-21T14:17:31+00:00"
-
-
-AKIAV3MGTI54OYZTBMNZ
-VmNQjf8jUU3B8wr1o1yFp6Jokt01f66L8ccXTYfP
-
 https://linuxhint.com/get-aws-session-token/
 
 KubeRay: A Ray cluster management solution on Kubernetes
