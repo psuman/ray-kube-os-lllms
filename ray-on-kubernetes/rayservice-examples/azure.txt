@@ -1,0 +1,75 @@
+az aks create -g GenerativeAI -n GenaiRayClst --enable-managed-identity --node-count 1 --enable-addons monitoring --enable-msi-auth-for-monitoring  --generate-ssh-keys --location southindia
+az aks get-credentials --resource-group GenerativeAI --name GenaiRayClst
+kubectl get nodes
+
+az config set defaults.location=southindia
+
+export HF_TOKEN=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
+kubectl create secret generic hf-secret --from-literal=hf_api_token=${HF_TOKEN} --dry-run=client -o yaml > hf-secret.yaml
+
+az aks nodepool add \
+   --resource-group GenerativeAI \
+   --cluster-name GenaiRayClst \
+   --name genairaypl \
+   --priority Spot \
+   --eviction-policy Delete \
+   --node-vm-size Standard_NC8as_T4_v3 \
+   --node-count 2 \
+   --node-taints kubernetes.azure.com/scalesetpriority=spot:NoSchedule \
+   --labels agentpool=genairaypl \
+   --mode User \
+   --no-wait
+
+   az aks nodepool add \
+   --resource-group GenerativeAI \
+   --cluster-name GenaiRayClst \
+   --name genairaypl \
+   --eviction-policy Delete \
+   --node-vm-size Standard_NC8as_T4_v3 \
+   --node-count 2 \
+   --labels agentpool=genairaypl \
+   --mode User \
+   --no-wait
+
+az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+# Install Ray locally
+pip install -U ray[default]
+
+# Add the helm chart
+helm repo add kuberay https://ray-project.github.io/kuberay-helm
+helm repo update
+
+
+# Install Kuberay
+helm repo add kuberay https://ray-project.github.io/kuberay-helm/
+#helm install kuberay-operator kuberay/kuberay-operator \
+#    --version 0.5.0 \
+#    --set "nodeSelector.agentpool"="genairaypl" \
+#    --set "tolerations[0].key"="kubernetes.azure.com/scalesetpriority" \
+#    --set "tolerations[0].operator"="Equal" \
+#    --set "tolerations[0].value"="spot" \
+#    --set "tolerations[0].effect"="NoSchedule"
+
+helm install kuberay-operator kuberay/kuberay-operator --version 1.0.0
+helm install raycluster kuberay/ray-cluster --version 1.0.0
+
+# Deploy RayCluster
+#helm install raycluster kuberay/ray-cluster \
+#    --version 0.5.0 \
+#    --set "nodeSelector.agentpool"="ray" \
+#    --set "tolerations[0].key"="kubernetes.azure.com/scalesetpriority" \
+#    --set "tolerations[0].operator"="Equal" \
+#    --set "tolerations[0].value"="spot" \
+#    --set "tolerations[0].effect"="NoSchedule"
+
+# Await all pods to be running
+while [ $(kubectl get pods --selector=ray.io/cluster=raycluster-kuberay | grep Running | wc -l) -lt 2 ]; do echo "Awaiting Running Pods..."; sleep 1; done
+
+# Access the cluster
+export HEAD_POD=$(kubectl get pods --selector=ray.io/node-type=head -o custom-columns=POD:metadata.name --no-headers)
+kubectl port-forward --address 0.0.0.0 service/raycluster-kuberay-head-svc 8265:8265
+
+#Deploy llama2
+kubectl apply -f hf-secret.yaml
+kubectl apply -f models/llama2-7b-chat-hf.yaml
+kubectl apply -f llama2-7b.yaml
