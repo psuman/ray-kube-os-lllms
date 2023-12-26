@@ -17,12 +17,12 @@ kind: ConfigMap
 metadata:
   name: falcon-7b-instruct
 data:
-  tiiuae--falcon-7b-instruct.yaml: |
+  falcon-7b-instruct.yaml: |
     deployment_config:
       autoscaling_config:
         min_replicas: 1
         initial_replicas: 1
-        max_replicas: 8
+        max_replicas: 2
         target_num_ongoing_requests_per_replica: 24
         metrics_interval_s: 10.0
         look_back_period_s: 30.0
@@ -32,7 +32,7 @@ data:
       max_concurrent_queries: 64
       ray_actor_options:
         resources:
-          accelerator_type_l4: 0.01
+          accelerator_type_T4: 0.01
     engine_config:
       model_id: tiiuae/falcon-7b-instruct
       hf_model_id: tiiuae/falcon-7b-instruct
@@ -58,4 +58,4 @@ data:
       num_cpus_per_worker: 3
       placement_strategy: "STRICT_PACK"
       resources_per_worker:
-        accelerator_type_l4: 0.01
+        accelerator_type_T4: 0.01

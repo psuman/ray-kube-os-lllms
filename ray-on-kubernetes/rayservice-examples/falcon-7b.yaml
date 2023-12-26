@@ -26,7 +26,7 @@ spec:
       import_path: rayllm.backend:router_application
       args:
         models:
-        - "./models/tiiuae--falcon-7b-instruct.yaml"
+        - "./models/falcon-7b-instruct.yaml"
   rayClusterConfig:
     # Ray head pod template
     headGroupSpec:
@@ -67,8 +67,8 @@ spec:
             configMap:
               name: falcon-7b-instruct
               items:
-              - key: tiiuae--falcon-7b-instruct.yaml
-                path: tiiuae--falcon-7b-instruct.yaml              
+              - key: falcon-7b-instruct.yaml
+                path: falcon-7b-instruct.yaml
     workerGroupSpecs:
     # the pod replicas in this group typed worker
     - replicas: 1
@@ -78,7 +78,7 @@ spec:
       groupName: gpu-group
       rayStartParams:
         block: 'true'
-        resources: '"{\"accelerator_type_cpu\": 20, \"accelerator_type_l4\": 1}"'
+        resources: '"{\"accelerator_type_cpu\": 6, \"accelerator_type_T4\": 1}"'
       # pod template
       template:
         spec:
@@ -91,18 +91,19 @@ spec:
                   command: ["/bin/sh","-c","ray stop"]
             resources:
               limits:
-                cpu: "20"
+                cpu: "6"
                 memory: "20G"
                 nvidia.com/gpu: 1
               requests:
-                cpu: "20"
+                cpu: "6"
                 memory: "20G"
                 nvidia.com/gpu: 1
           # Please ensure the following taint has been applied to the GPU node in the cluster.
-          tolerations:
-            - key: "ray.io/node-type"
-              operator: "Equal"
-              value: "worker"
-              effect: "NoSchedule"
+#          tolerations:
+#            - key: "ray.io/node-type"
+#              operator: "Equal"
+#              value: "worker"
+#              effect: "NoSchedule"
           nodeSelector:
-            cloud.google.com/gke-accelerator: nvidia-l4
+            agentpool: genairaypl
+#            cloud.google.com/gke-accelerator: nvidia-l4

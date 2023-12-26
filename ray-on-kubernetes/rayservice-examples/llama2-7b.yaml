@@ -80,6 +80,7 @@ spec:
       groupName: gpu-group
       rayStartParams:
         block: 'true'
+        resources: '"{\"accelerator_type_cpu\": 2, \"accelerator_type_T4\": 1}"'
       #  resources: '"{\"accelerator_type_cpu\": 20, \"accelerator_type_l4\": 1}"'
       # pod template
       template:
