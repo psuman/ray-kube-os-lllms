@@ -58,4 +58,4 @@ data:
       num_cpus_per_worker: 3
       placement_strategy: "STRICT_PACK"
       resources_per_worker:
-        accelerator_type_l4: 0.01
+        accelerator_type_T4: 0.01
