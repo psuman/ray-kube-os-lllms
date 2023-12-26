@@ -26,7 +26,7 @@ spec:
       import_path: rayllm.backend:router_application
       args:
         models:
-        - "./models/falcon-7b-instruct.yaml"
+        - "./models/tiiuae--falcon-7b-instruct.yaml"
   rayClusterConfig:
     # Ray head pod template
     headGroupSpec:
@@ -67,8 +67,8 @@ spec:
             configMap:
               name: falcon-7b-instruct
               items:
-              - key: falcon-7b-instruct.yaml
-                path: falcon-7b-instruct.yaml
+              - key: tiiuae--falcon-7b-instruct.yaml
+                path: tiiuae--falcon-7b-instruct.yaml
     workerGroupSpecs:
     # the pod replicas in this group typed worker
     - replicas: 1
