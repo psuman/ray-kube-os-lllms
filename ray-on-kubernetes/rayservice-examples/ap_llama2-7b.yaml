@@ -45,10 +45,10 @@ spec:
             image: anyscale/ray-llm:0.4.0
             resources:
               limits:
-                cpu: 2
+                cpu: 8
                 memory: 8Gi
               requests:
-                cpu: 2
+                cpu: 8
                 memory: 8Gi
             volumeMounts:
             - mountPath: /home/ray/models
@@ -104,7 +104,7 @@ spec:
                 memory: "20G"
                 nvidia.com/gpu: 1
               requests:
-                cpu: "4"
+                cpu: "8"
                 memory: "20G"
                 nvidia.com/gpu: 1
             volumeMounts:

@@ -99,18 +99,19 @@ spec:
                   command: ["/bin/sh","-c","ray stop"]
             resources:
               limits:
-                cpu: "20"
+                cpu: "8"
                 memory: "20G"
                 nvidia.com/gpu: 1
               requests:
-                cpu: "20"
+                cpu: "8"
                 memory: "20G"
                 nvidia.com/gpu: 1
           # Please ensure the following taint has been applied to the GPU node in the cluster.
-          tolerations:
-            - key: "ray.io/node-type"
-              operator: "Equal"
-              value: "worker"
-              effect: "NoSchedule"
+#          tolerations:
+#            - key: "ray.io/node-type"
+#              operator: "Equal"
+#              value: "worker"
+#              effect: "NoSchedule"
           nodeSelector:
-            cloud.google.com/gke-accelerator: nvidia-l4
+            agentpool: genairaypl
+            #cloud.google.com/gke-accelerator: nvidia-l4
