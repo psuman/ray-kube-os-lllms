@@ -17,7 +17,7 @@ kind: ConfigMap
 metadata:
   name: falcon-7b-instruct
 data:
-  falcon-7b-instruct.yaml: |
+  tiiuae--falcon-7b-instruct.yaml: |
     deployment_config:
       autoscaling_config:
         min_replicas: 1
