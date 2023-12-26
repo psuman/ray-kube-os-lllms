@@ -80,7 +80,7 @@ spec:
       groupName: gpu-group
       rayStartParams:
         block: 'true'
-        resources: '"{\"accelerator_type_cpu\": 20, \"accelerator_type_l4\": 1}"'
+      #  resources: '"{\"accelerator_type_cpu\": 20, \"accelerator_type_l4\": 1}"'
       # pod template
       template:
         spec:
@@ -97,15 +97,15 @@ spec:
               preStop:
                 exec:
                   command: ["/bin/sh","-c","ray stop"]
-            resources:
-              limits:
-                cpu: "8"
-                memory: "20G"
-                nvidia.com/gpu: 1
-              requests:
-                cpu: "8"
-                memory: "20G"
-                nvidia.com/gpu: 1
+            #resources:
+              #limits:
+              #  cpu: "4"
+              #  memory: "20G"
+                #nvidia.com/gpu: 1
+              #requests:
+               # cpu: "4"
+               # memory: "20G"
+                #nvidia.com/gpu: 1
           # Please ensure the following taint has been applied to the GPU node in the cluster.
 #          tolerations:
 #            - key: "ray.io/node-type"
